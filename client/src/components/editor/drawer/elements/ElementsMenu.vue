@@ -1,6 +1,24 @@
 <template>
   <div class="menus-wrapper">
-    <menu-toggle menuHeader="Basic">
+
+    <template v-for='section in sections'>
+        <menu-toggle :menuHeader="section.title">
+          <div class="el-menu">
+            <div class="el-menu__el" :key="element.name"
+              v-for="element in section.components"
+              :title="element.name"
+              draggable="true"
+              @dragstart="e => dragstartHandler(e, element)"
+              @click="e => addItemToStage(e, element)"
+            >
+              <svgicon :icon="'system/elements/'+(element.iconName || element.name)" width="24" height="24" color="rgba(0,0,0,.87)"></svgicon>
+              <span>{{element.displayName || element.name}}</span>
+            </div>
+          </div>
+        </menu-toggle>
+    </template>
+
+    <!-- <menu-toggle menuHeader="Basic">
       <div class="el-menu">
         <div class="el-menu__el" :key="element.name"
           v-for="element in elements"
@@ -13,9 +31,9 @@
           <span>{{element.displayName || element.name}}</span>
         </div>
       </div>
-    </menu-toggle>
+    </menu-toggle> -->
 
-    <menu-toggle menuHeader="Material Design">
+    <!-- <menu-toggle menuHeader="Material Design">
       <div class="el-menu">
         <div class="el-menu__el" :key="mdComp.name"
           v-for="mdComp in mdComponents"
@@ -28,7 +46,7 @@
           <span>{{mdComp.displayName || mdComp.name}}</span>
         </div>
       </div>
-    </menu-toggle>
+    </menu-toggle> -->
 
     <!-- TODO: v-for components (community/personal) retrieved from GH? -->
     <!-- <menu-toggle menuHeader="Community Components" :startClosed="true">
@@ -53,20 +71,19 @@
 import { mapState, mapActions } from 'vuex'
 import { registerElement } from '@/store/types'
 
-import basicElements from '@/assets/BasicElements'
-import materialComponents from '@/assets/MaterialComponents'
+import sections from '@/assets/library'
 // import mockComponents from '@/assets/MockComponents'
 import MenuToggle from '@/components/editor/common/MenuToggle'
 
 import '@/assets/icons/system/elements/'
 
 export default {
-  name: 'elements-menu',
   components: { MenuToggle },
   data: function () {
     return {
-      elements: basicElements,
-      mdComponents: materialComponents
+      sections
+      // elements: basicElements,
+      // mdComponents: materialComponents
       // components: mockComponents
     }
   },
