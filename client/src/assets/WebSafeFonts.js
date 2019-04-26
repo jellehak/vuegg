@@ -1,4 +1,4 @@
-const WebSafeFonts = [
+export default [
   {
     'family': 'serif',
     'fonts': [
@@ -72,5 +72,3 @@ const WebSafeFonts = [
     ]
   }
 ]
-
-export default WebSafeFonts

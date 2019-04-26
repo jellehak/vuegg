@@ -2,7 +2,7 @@
   Basic elements (HTML5 Elements):
   - PARENT -> egglement, [containegg]
  */
-const basicElements = [
+export default [
   // DIV
   {
     'name': 'div',
@@ -399,5 +399,3 @@ const basicElements = [
     'classes': {}
   }
 ]
-
-export default basicElements

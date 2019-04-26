@@ -46,9 +46,7 @@ export function compRef (component) {
   }
 }
 
-const componentFactory = {
+export default {
   compInst,
   compRef
 }
-
-export default componentFactory

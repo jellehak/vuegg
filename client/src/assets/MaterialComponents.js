@@ -3,7 +3,7 @@
   - PARENT -> external, componegg, egglement
   - CHILDREN -> (none)
  */
-const materialComponents = [
+export default [
 
   // --- DRAWER --- //
   {
@@ -86,7 +86,7 @@ const materialComponents = [
         'name': 'vue-mdc-adapter',
         'version': '^0.15.3',
         'imports': [
-            ['VueMDCAdapter', 'vue-mdc-adapter'],
+          ['VueMDCAdapter', 'vue-mdc-adapter'],
           'https://unpkg.com/vue-mdc-adapter@^0.15.3/dist/vue-mdc-adapter.min.css'
         ]
       }
@@ -571,5 +571,3 @@ const materialComponents = [
     'children': []
   }
 ]
-
-export default materialComponents

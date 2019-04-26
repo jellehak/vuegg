@@ -1,7 +1,7 @@
 import shortid from 'shortid'
 import newPage from './pageFactory'
 
-function newProject (title) {
+export default (title) => {
   return {
     id: shortid.generate(),
     title: title,
@@ -9,5 +9,3 @@ function newProject (title) {
     pages: [newPage('Home', '/')]
   }
 }
-
-export default newProject

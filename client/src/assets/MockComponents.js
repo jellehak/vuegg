@@ -3,7 +3,7 @@
   - PARENT -> componegg, egglement, containegg
   - CHILDREN -> egglement, [componegg], [containegg]
  */
-const mockComponents = [
+export default [
   {
     'name': 'search',
     'type': 'div',
@@ -51,5 +51,3 @@ const mockComponents = [
     ]
   }
 ]
-
-export default mockComponents

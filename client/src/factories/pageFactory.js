@@ -1,6 +1,6 @@
 import shortid from 'shortid'
 
-function newPage (name, path, height, width) {
+export default (name, path, height, width) => {
   return {
     id: shortid.generate(),
     name: name,
@@ -20,5 +20,3 @@ function newPage (name, path, height, width) {
     children: []
   }
 }
-
-export default newPage

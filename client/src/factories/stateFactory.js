@@ -1,6 +1,6 @@
 import newProject from './projectFactory'
 
-function newState (project) {
+export default (project) => {
   return {
     app: {
       isLoading: false,
@@ -24,5 +24,3 @@ function newState (project) {
     project: project || newProject('my vuegg project')
   }
 }
-
-export default newState
