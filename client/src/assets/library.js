@@ -8,5 +8,7 @@ import materialComponents from '@/assets/MaterialComponents'
 
 export default [
   { title: 'Basic', components: basicElements },
-  { title: 'Material Design', components: materialComponents }
+  { title: 'Server', components: require('./Server').default },
+  { title: 'Vuetify', components: require('./Vuetify').default }
+//   { title: 'Material Design', components: materialComponents }
 ]
