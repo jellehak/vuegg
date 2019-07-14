@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="mdc-theme--background">
-    <div class="viewport-splash_wrapper">
+    <!-- <div class="viewport-splash_wrapper">
       <div class="viewport-splash_content">
         <svgicon icon="product/vuegg" width="180" height="180" :original="true"></svgicon>
         <h3>Sorry about that!</h3>
@@ -10,7 +10,7 @@
         </p>
         <p><b>NOTE</b>: As for today, vuegg does not support touch devices.</p>
       </div>
-    </div>
+    </div> -->
     <router-view></router-view>
   </div>
 </template>
@@ -23,7 +23,6 @@ import redoundo from '@/mixins/redoundo'
 import '@/assets/icons/product/vuegg'
 
 export default {
-  name: 'app',
   mixins: [redoundo],
   mounted: function () {
     this.initializeState()

@@ -5,35 +5,34 @@
       <span class="selection-title">{{selectionTitle}}</span>
     </div>
 
+  <DynamicSettings v-if="(selectionType === 'element')"
+      :value='selectedItem'
+      @propchange="onPropChange"/>
+
     <page-settings v-if="(selectionType === 'page')"
       :height="height" :width="width" :styles="styles"
-      @propchange="onPropChange">
-    </page-settings>
+      @propchange="onPropChange"/>
 
     <global-settings v-if="(selectionType === 'global')"
       :zIndex="zIndex" :top="top" :left="left" :bottom="bottom" :right="right"
-      @propchange="onPropChange" >
-    </global-settings>
+      @propchange="onPropChange" />
 
     <component-settings v-if="(selectionType === 'component' || selectionType === 'multiple')"
       :top="top" :left="left" :bottom="bottom" :right="right"
       :zIndex="zIndex" :height="height" :width="width" :styles="styles"
-      @propchange="onPropChange" >
-    </component-settings>
+      @propchange="onPropChange" />
 
-    <element-settings v-if="(selectionType === 'element')"
+    <!-- <element-settings v-if="(selectionType === 'element')"
       :top="top" :left="left" :bottom="bottom" :right="right"
       :zIndex="zIndex" :height="height" :width="width"
       :text="text" :styles="styles" :attrs="attrs"
-      @propchange="onPropChange">
-    </element-settings>
+      @propchange="onPropChange"/> -->
 
     <mdc-settings v-if="(selectionType === 'mdc')"
       :top="top" :left="left" :bottom="bottom" :right="right"
       :zIndex="zIndex" :height="height" :width="width"
       :text="text" :styles="styles" :attrs="attrs"
-      @propchange="onPropChange">
-    </mdc-settings>
+      @propchange="onPropChange"/>
   </div>
 </template>
 
@@ -48,6 +47,7 @@ import ElementSettings from './submenus/ElementSettings.vue'
 import ComponentSettings from './submenus/ComponentSettings.vue'
 import MdcSettings from './submenus/MdcSettings.vue'
 import GlobalSettings from './submenus/GlobalSettings.vue'
+import DynamicSettings from './submenus/DynamicSettings.vue'
 
 import WebSafeFonts from '@/assets/WebSafeFonts'
 import '@/assets/icons/system/editor/'
@@ -55,8 +55,15 @@ import '@/assets/icons/system/elements/'
 
 export default {
   name: 'settings-menu',
-  components: { PageSettings, ElementSettings, ComponentSettings, MdcSettings, GlobalSettings },
-  data: function () {
+  components: { 
+    DynamicSettings,
+    PageSettings, 
+    ElementSettings, 
+    ComponentSettings, 
+    MdcSettings, 
+    GlobalSettings 
+  },
+  data () {
     return {
       text: null,
       height: null,
@@ -149,7 +156,7 @@ export default {
     ...mapMutations([updatePage, updateEgglement])
   },
   watch: {
-    'selectedItem': function (val) {
+    'selectedItem' (val) {
       if (val !== null) {
         if (Array.isArray(val)) {
           this.text = this.height = this.width = this.top = this.left = this.bottom = this.right = null
