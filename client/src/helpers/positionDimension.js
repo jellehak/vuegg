@@ -31,7 +31,7 @@ export function fixElementToParentBounds (element, parent) {
   if (top === 0 && (height > parentH)) height = parentH
   if (left === 0 && (width > parentW)) width = parentW
 
-  return {left, top, height, width}
+  return { left, top, height, width }
 }
 
 /**

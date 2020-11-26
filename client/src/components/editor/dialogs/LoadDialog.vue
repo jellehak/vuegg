@@ -20,7 +20,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import { loadVueggProject } from '@/store/types'
-import dialogPolyfill from 'dialog-polyfill/dialog-polyfill'
+import dialogPolyfill from 'dialog-polyfill'
 
 export default {
   name: 'load-dialog',

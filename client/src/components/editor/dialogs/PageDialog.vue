@@ -17,11 +17,10 @@
   </dialog>
 </template>
 
-
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 import { pathInUse, nameInUse, savePageAndClose, _togglePageDialog } from '@/store/types'
-import dialogPolyfill from 'dialog-polyfill/dialog-polyfill'
+import dialogPolyfill from 'dialog-polyfill'
 
 export default {
   name: 'page-dialog',
@@ -42,7 +41,7 @@ export default {
 
     ...mapState({
       activePage: state => state.app.selectedPage,
-      pageDialog: state => state ? state.app.pageDialog : {isNew: true, isOpen: false}
+      pageDialog: state => state ? state.app.pageDialog : { isNew: true, isOpen: false }
     }),
 
     ...mapGetters([pathInUse, nameInUse])
@@ -100,7 +99,7 @@ export default {
   },
   watch: {
     'pageDialog.isOpen': function (val) {
-      let dialog = this.$el
+      const dialog = this.$el
 
       if (!val) {
         this.resetDialog()
@@ -119,7 +118,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .page-dialog__title {

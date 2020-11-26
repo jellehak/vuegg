@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueSVGIcon from 'vue-svgicon'
-import VueMDCAdapter from 'vue-mdc-adapter'
+// import VueMDCAdapter from 'vue-mdc-adapter'
 import Tooltip from 'vue-directive-tooltip'
 
 import localforage from 'localforage'
@@ -13,13 +13,13 @@ import store from './store/'
 import './setups/vuetify'
 
 import 'normalize.css'
-import 'dialog-polyfill/dialog-polyfill.css'
-import 'vue-directive-tooltip/css/index.css'
+// import 'dialog-polyfill/dialog-polyfill.css'
+// import 'vue-directive-tooltip/css/index.css'
 
 localforage.config({ name: 'vuegg' })
 
 Vue.use(VueSVGIcon)
-Vue.use(VueMDCAdapter)
+// Vue.use(VueMDCAdapter)
 Vue.use(Tooltip, {
   class: 'tooltip-vuegg',
   placement: 'bottom',

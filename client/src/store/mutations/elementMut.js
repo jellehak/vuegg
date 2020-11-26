@@ -11,7 +11,7 @@ const commonElementMutations = {
     payload.parent.children.push(payload.egglement)
   },
 
-/**
+  /**
  * Updates the passed egglement with the defined new values
  *
  * @param {object} payload.egglement : Egglement to update
@@ -39,7 +39,7 @@ const commonElementMutations = {
     if (payload.attrs) payload.egglement.attrs = payload.attrs
   },
 
-/**
+  /**
  * Removes the egglement under the specified index
  * from the passed parent egglement (or page)
  *
@@ -64,7 +64,7 @@ const internalElementMutations = {
     state.app.selectedElements = []
   },
 
-/**
+  /**
  * Replaces the selectedElements array with a new array
  *
  * @param {array} elements : selected element
@@ -73,7 +73,7 @@ const internalElementMutations = {
     state.app.selectedElements = elements
   },
 
-/**
+  /**
  * Adds a new element to the selectedElements array
  *
  * @param {object} elem : selected element
@@ -82,7 +82,7 @@ const internalElementMutations = {
     state.app.selectedElements.push(elem)
   },
 
-/**
+  /**
  * Removes an element from the selectedElements array
  *
  * @param {object} elemIndex : Index of the element to remove

@@ -56,7 +56,7 @@ const redoundo = {
     undo () {
       if (this.canUndo) {
         this.undone.push(this.done.pop())
-        let undoState = this.done[this.done.length - 1]
+        const undoState = this.done[this.done.length - 1]
         this.$store.replaceState(cloneDeep(undoState))
         this.$root.$emit('rebaseState')
         this.updateCanRedoUndo()
@@ -65,7 +65,7 @@ const redoundo = {
 
     redo () {
       if (this.canRedo) {
-        let redoState = this.undone.pop()
+        const redoState = this.undone.pop()
         this.done.push(redoState)
         this.$store.replaceState(cloneDeep(redoState))
         this.$root.$emit('rebaseState')

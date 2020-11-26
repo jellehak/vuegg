@@ -10,7 +10,7 @@ const internalAuthMutations = {
     state.oauth.isAuthorized = isAuthorized
   },
 
-/**
+  /**
  * Sets the authenticated user to the user passed in the payload
  *
  * @param {object} user : The logged user (authenticated)
@@ -20,7 +20,7 @@ const internalAuthMutations = {
     state.oauth.authenticatedUser = user
   },
 
-/**
+  /**
  * Removes the authenticatedUser (sets it to NULL)
  */
   [types._removeAuthenticatedUser]: function (state) {

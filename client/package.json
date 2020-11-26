@@ -1,58 +1,53 @@
 {
-    "name": "vuegg-client",
-    "description": "vuegg UI",
-    "author": "alxpez",
-    "license": "MIT",
-    "private": false,
-    "scripts": {
-      "start": "npm run serve",
-      "serve": "npx vue serve ./src/main.js",
-      "build": "npx vue build ./src/main.js",
-      "build-old": "node build/build.js",
-      "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-      "e2e": "node test/e2e/runner.js",
-      "test": "npm run unit && npm run e2e",
-      "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
-    },
-    "dependencies": {
-      "axios": "^0.19.0",
-      "clone-deep": "^4.0.1",
-      "dialog-polyfill": "^0.5.0",
-      "downloadjs": "^1.4.7",
-      "es6-promisify": "^6.0.1",
-      "localforage": "^1.7.3",
-      "normalize.css": "^8.0.1",
-      "oauth-open": "^1.0.4",
-      "shortid": "^2.2.14",
-      "vue": "^2.6.10",
-      "vue-color": "^2.7.0",
-      "vue-directive-tooltip": "^1.6.2",
-      "vue-mdc-adapter": "^0.18.2",
-      "vue-router": "^3.0.7",
-      "vue-svgicon": "^3.2.6",
-      "vuetify": "^1.5.16",
-      "vuex": "^3.1.1"
-    },
-    "devDependencies": {
-      "node-sass": "^4.12.0",
-      "sass-loader": "^7.1.0"
-    },
-    "engines": {
-      "node": ">= 8.0.0",
-      "npm": ">= 5.0.0"
-    },
-    "browserslist": [
-      "> 1%",
-      "last 2 versions",
-      "not ie <= 8"
-    ],
-    "repository": {
-      "type": "git",
-      "url": "git+ssh://git@github.com/vuegg/vuegg.git"
-    },
-    "bugs": {
-      "url": "https://github.com/vuegg/vuegg/issues"
-    },
-    "homepage": "https://github.com/vuegg/vuegg#README"
-  }
-  
+  "name": "vuegg-client",
+  "description": "vuegg UI",
+  "author": "alxpez",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "npm run serve",
+    "serve": "npx vue serve ./src/main.js",
+    "build": "npx vue build ./src/main.js",
+    "build-old": "node build/build.js",
+    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
+    "e2e": "node test/e2e/runner.js",
+    "test": "npm run unit && npm run e2e",
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "clone-deep": "^4.0.1",
+    "dialog-polyfill": "^0.5.0",
+    "downloadjs": "^1.4.7",
+    "es6-promisify": "^6.0.1",
+    "localforage": "^1.7.3",
+    "normalize.css": "^8.0.1",
+    "oauth-open": "^1.0.4",
+    "shortid": "^2.2.14",
+    "vue": "^2.6.10",
+    "vue-color": "^2.7.0",
+    "vue-directive-tooltip": "^1.6.2",
+    "vue-mdc-adapter": "^0.15.4",
+    "vue-router": "^3.0.7",
+    "vue-svgicon": "^3.2.6",
+    "vuetify": "^1.5.16",
+    "vuex": "^3.1.1"
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 5.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/vuegg/vuegg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vuegg/vuegg/issues"
+  },
+  "homepage": "https://github.com/vuegg/vuegg#README"
+}

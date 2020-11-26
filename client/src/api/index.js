@@ -43,7 +43,7 @@ async function getVueggProject (owner, repo, token) {
  */
 async function generateVueSources (project) {
   try {
-    return await axios.post('/api/generate', project, {responseType: 'blob'})
+    return await axios.post('/api/generate', project, { responseType: 'blob' })
   } catch (e) {
     console.error(e)
     return false

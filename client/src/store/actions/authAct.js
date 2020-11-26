@@ -11,8 +11,8 @@ const authActions = {
   [types.checkAuth]: async function ({ state, commit }) {
     commit(types._toggleLoadingStatus, true)
 
-    let user = await localforage.getItem('gh-user')
-    let token = await localforage.getItem('gh-token')
+    const user = await localforage.getItem('gh-user')
+    const token = await localforage.getItem('gh-token')
 
     if (!user || !token) {
       if (state.oauth.isAuthorized) { commit(types._toggleAuthorizationStatus, false) }
@@ -25,18 +25,18 @@ const authActions = {
     commit(types._toggleLoadingStatus, false)
   },
 
-/**
+  /**
  * [description]
  * @return {[type]} [description]
  */
   [types.logIn]: async function ({ commit }) {
-    let token = await auth.authorizeUser()
+    const token = await auth.authorizeUser()
 
     commit(types._toggleLoadingStatus, true)
     commit(types._toggleAuthorizationStatus, !!token)
 
     if (token) {
-      let user = await auth.getAuthenticatedUser(token)
+      const user = await auth.getAuthenticatedUser(token)
       localforage.setItem('gh-token', token)
       if (user) {
         commit(types._addAuthenticatedUser, user)
@@ -51,7 +51,7 @@ const authActions = {
     commit(types._toggleLoadingStatus, false)
   },
 
-/**
+  /**
  * [description]
  * @return {[type]} [description]
  */

@@ -120,7 +120,9 @@ const projectActions = {
 
     let project
     switch (origin) {
-      case 'local': project = await localforage.getItem('local-checkpoint'); break
+      case 'local':
+        project = await localforage.getItem('local-checkpoint')
+        break
       case 'pc': project = content; break
       case 'github':
         // const token = await localforage.getItem('gh-token')

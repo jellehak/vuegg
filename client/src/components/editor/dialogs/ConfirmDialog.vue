@@ -17,7 +17,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import { clearProject } from '@/store/types'
-import dialogPolyfill from 'dialog-polyfill/dialog-polyfill'
+import dialogPolyfill from 'dialog-polyfill'
 
 export default {
   name: 'confirm-dialog',

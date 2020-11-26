@@ -1,16 +1,35 @@
 <template>
   <dialog>
-    <p class="upload-dialog__title">Upload your vuegg project to Github</p>
+    <p class="upload-dialog__title">
+      Upload your vuegg project to Github
+    </p>
     <div class="upload-dialog__content">
-      <span>{{owner}}/{{repo}}</span>
+      <span>{{ owner }}/{{ repo }}</span>
 
-      <mdc-textfield v-model="repo" label="Repository" @input="checkRepo" :helptext="repoError"
-        minlength="1" helptext-validation helptext-persistent required
-        class="upload-dialog__input"  :class="{'mdc-text-field--invalid': repoError}"/>
+      <mdc-textfield
+        v-model="repo"
+        label="Repository"
+        :helptext="repoError"
+        minlength="1"
+        helptext-validation
+        helptext-persistent
+        required
+        class="upload-dialog__input"
+        :class="{'mdc-text-field--invalid': repoError}"
+        @input="checkRepo"
+      />
     </div>
     <div class="upload-dialog__actions">
-      <mdc-button @click="onUpload" unelevated :disabled="!valid">Upload</mdc-button>
-      <mdc-button @click="closeDialog">Cancel</mdc-button>
+      <mdc-button
+        unelevated
+        :disabled="!valid"
+        @click="onUpload"
+      >
+        Upload
+      </mdc-button>
+      <mdc-button @click="closeDialog">
+        Cancel
+      </mdc-button>
     </div>
   </dialog>
 </template>
@@ -18,11 +37,11 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import { uploadProjectToGH } from '@/store/types'
-import dialogPolyfill from 'dialog-polyfill/dialog-polyfill'
+import dialogPolyfill from 'dialog-polyfill'
 import localforage from 'localforage'
 
 export default {
-  name: 'upload-dialog',
+  name: 'UploadDialog',
   data: function () {
     return {
       valid: true,
@@ -66,7 +85,7 @@ export default {
     },
 
     onUpload () {
-      this.uploadProjectToGH({repoName: this.repo})
+      this.uploadProjectToGH({ repoName: this.repo })
       this.closeDialog()
     },
 
@@ -85,7 +104,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .upload-dialog__title {

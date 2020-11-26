@@ -98,7 +98,7 @@ const types = {
 
   getSelectedElIndexById,
 
-// ACTIONS
+  // ACTIONS
   logIn,
   logOut,
   checkAuth,
@@ -123,7 +123,7 @@ const types = {
   removeElement,
   rebaseSelectedElements,
 
-// MUTATIONS
+  // MUTATIONS
   addProject,
   updateProject,
   deleteProject,
@@ -136,7 +136,7 @@ const types = {
   updateEgglement,
   deleteEgglement,
 
-// INTERNAL-MUTATIONS
+  // INTERNAL-MUTATIONS
   _toggleAuthorizationStatus,
   _addAuthenticatedUser,
   _removeAuthenticatedUser,
