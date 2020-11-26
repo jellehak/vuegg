@@ -19,15 +19,15 @@ const pageActions = {
  * @see {@link [types._togglePageDialog]}
  */
   [types.savePageAndClose]: function ({ getters, commit }, payload) {
-    commit(types._togglePageDialog, {isOpen: false, isNew: !payload.id})
+    commit(types._togglePageDialog, { isOpen: false, isNew: !payload.id })
 
     if (!payload.id) {
-      let page = newPage(payload.name, payload.path.toLowerCase())
+      const page = newPage(payload.name, payload.path.toLowerCase())
       commit(types.createPage, page)
       commit(types._clearSelectedElements)
       commit(types._changeActivePage, page)
     } else {
-      let pagePayload = {
+      const pagePayload = {
         page: getters.getPageById(payload.id),
         name: payload.name,
         path: payload.path
@@ -36,7 +36,7 @@ const pageActions = {
     }
   },
 
-/**
+  /**
  * Creates a new copy of the page provided on the payload
  * and changes the active page afterwards.
  *
@@ -51,21 +51,21 @@ const pageActions = {
     const copyId = shortid.generate()
     const extGlobCompList = getExtGlobComps(payload.page)
 
-    let pageCopy = {
+    const pageCopy = {
       ...setElId(payload.page),
       name: payload.page.name + copyId,
       path: payload.page.path + copyId
     }
 
     if (extGlobCompList.length > 0) {
-      for (let comp of extGlobCompList) {
+      for (const comp of extGlobCompList) {
         if (!getters.componentExist(comp.name)) {
-          let componentRef = compRef(payload.el)
+          const componentRef = compRef(payload.el)
           commit(types._saveComponentRef, setElId(componentRef))
         } else {
-          let compIndex = getters.getComponentRefIndexByName(comp.name)
-          let newCount = getters.getComponentRefByIndex(compIndex).usageCount + 1
-          commit(types._updateComponentRef, {compIndex, newCount})
+          const compIndex = getters.getComponentRefIndexByName(comp.name)
+          const newCount = getters.getComponentRefByIndex(compIndex).usageCount + 1
+          commit(types._updateComponentRef, { compIndex, newCount })
         }
       }
     }
@@ -74,7 +74,7 @@ const pageActions = {
     commit(types._changeActivePage, pageCopy)
   },
 
-/**
+  /**
  * Creates a new copy of the page provided on the payload
  * and changes the active page afterwards.
  *
@@ -88,12 +88,12 @@ const pageActions = {
     const extGlobCompList = getExtGlobComps(state.project.pages[payload.pageIndex])
 
     if (extGlobCompList.length > 0) {
-      for (let comp of extGlobCompList) {
-        let compIndex = getters.getComponentRefIndexByName(comp.name)
-        let count = getters.getComponentRefByIndex(compIndex).usageCount
+      for (const comp of extGlobCompList) {
+        const compIndex = getters.getComponentRefIndexByName(comp.name)
+        const count = getters.getComponentRefByIndex(compIndex).usageCount
 
         count > 1
-          ? commit(types._updateComponentRef, {compIndex, newCount: count - 1})
+          ? commit(types._updateComponentRef, { compIndex, newCount: count - 1 })
           : commit(types._removeComponentRef, compIndex)
       }
     }

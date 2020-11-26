@@ -11,10 +11,10 @@ export default (name, path, height, width) => {
       '--mdc-theme-primary': '#673ab7',
       '--mdc-theme-secondary': '#f44336',
       '--mdc-theme-background': '#ffffff',
-      'position': 'relative',
-      'margin': 'auto',
+      position: 'relative',
+      margin: 'auto',
       'background-color': '#ffffff',
-      'overflow': 'hidden'
+      overflow: 'hidden'
     },
     classes: [],
     children: []

@@ -12,10 +12,10 @@ export function setElId (el, parentId) {
   let elId = shortid.generate()
   if (parentId) elId = parentId.concat('.', elId)
 
-  let newElement = {...el, id: elId, children: []}
+  const newElement = { ...el, id: elId, children: [] }
 
   if (el.children && el.children.length > 0) {
-    for (let childEl of el.children) {
+    for (const childEl of el.children) {
       newElement.children.push(setElId(childEl, elId))
     }
   }
@@ -33,7 +33,7 @@ export function getExtGlobComps (el, compList) {
   if (el.global || el.external) compList.push(el)
 
   if (el.children && el.children.length > 0) {
-    for (let childEl of el.children) {
+    for (const childEl of el.children) {
       compList = getExtGlobComps(childEl, compList)
     }
   }
@@ -52,7 +52,7 @@ export function getExtGlobComps (el, compList) {
 export function getChildNode (currentNode, targetId) {
   if (currentNode.id === targetId) return currentNode
 
-  for (let child of currentNode.children) {
+  for (const child of currentNode.children) {
     if (targetId.indexOf(child.id) !== -1) {
       return getChildNode(child, targetId)
     }
@@ -74,13 +74,13 @@ export function getChildNode (currentNode, targetId) {
  * @return {object} : Relative point obtained from the currentX, currentY
  */
 export function calcRelativePoint (currentNode, targetId, currentX, currentY) {
-  if (currentNode.id === targetId) return {left: currentX, top: currentY}
+  if (currentNode.id === targetId) return { left: currentX, top: currentY }
 
   if (currentNode.left && currentNode.top) {
     currentX -= currentNode.left
     currentY -= currentNode.top
   }
-  for (let child of currentNode.children) {
+  for (const child of currentNode.children) {
     if (targetId.indexOf(child.id) !== -1) {
       return calcRelativePoint(child, targetId, currentX, currentY)
     }

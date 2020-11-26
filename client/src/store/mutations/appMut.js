@@ -10,7 +10,7 @@ const internalAppMutations = {
     state.app.isLoading = isLoading
   },
 
-/**
+  /**
  * Changes the value of "isBlockLoading", to the value passed as payload
  *
  * @param {boolean} isLoading : Whether or not the app is block loading
@@ -19,7 +19,7 @@ const internalAppMutations = {
     state.app.isBlockLoading = isBlockLoading
   },
 
-/**
+  /**
  * Changes the value of "hasChanges", to the value passed as payload
  *
  * @param {boolean} hasChanges : Whether or not the project has changes
@@ -28,7 +28,7 @@ const internalAppMutations = {
     state.app.hasChanges = hasChanges
   },
 
-/**
+  /**
  * Changes the value of "isSyncing", to the value passed as payload
  *
  * @param {boolean} isSyncing : Whether or not the app is syncing local cache
@@ -37,7 +37,7 @@ const internalAppMutations = {
     state.app.isSyncing = isSyncing
   },
 
-/**
+  /**
  * Changes the value of "canUndo", to the value passed as payload
  *
  * @param {boolean} canUndo : Whether or not there are changes to undo
@@ -46,7 +46,7 @@ const internalAppMutations = {
     state.app.canUndo = canUndo
   },
 
-/**
+  /**
  * Changes the value of "canRedo", to the value passed as payload
  *
  * @param {boolean} canRedo : Whether or not there are changes to redo

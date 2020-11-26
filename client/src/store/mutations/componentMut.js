@@ -10,7 +10,7 @@ const internalComponentMutations = {
     state.project.components.push(componentRef)
   },
 
-/**
+  /**
  * Updates the component reference usage count.
  *
  * @param {number} payload.compIndex : Component's index
@@ -23,7 +23,7 @@ const internalComponentMutations = {
     })
   },
 
-/**
+  /**
  * Removes a component reference from the state.project.components array
  *
  * @param {string} componentRefIndex : Index of the component reference to remove

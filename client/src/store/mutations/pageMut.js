@@ -10,7 +10,7 @@ const commonPageMutations = {
     state.project.pages.push(page)
   },
 
-/**
+  /**
  * Updates the page under the specify index with the new passed values
  *
  * @param {number} payload.page : Page to update
@@ -28,7 +28,7 @@ const commonPageMutations = {
     if (payload.styles) payload.page.styles = payload.styles
   },
 
-/**
+  /**
  * Removes the page under the specified index from the state.project.pages array
  *
  * @param {number} pageIndex : Page's index
@@ -55,7 +55,7 @@ const internalPageMutations = {
     state.app.pageDialog.isOpen = payload.isOpen
   },
 
-/**
+  /**
  * Adds the passed page to the state.app.selectedPage
  *
  * @param {object} page : The page currently selected
@@ -64,7 +64,7 @@ const internalPageMutations = {
     state.app.selectedPage = page
   },
 
-/**
+  /**
  * Replaces the page on the specified index with the current selectedPage
  *
  * @param {object} pageIndex : Index of the page to get "rebased"

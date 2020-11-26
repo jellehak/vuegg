@@ -25,11 +25,11 @@ export default {
 </script>
 
 
-<style scoped lang="scss">
+<style>
 @import './spinner.css';
 </style>
 
-<style scoped>
+<style>
 .block-loader__modal {
   top: 0;
   left: 0;

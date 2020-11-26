@@ -31,7 +31,7 @@ async function authorizeUser () {
     .concat('&scope=').concat(SCOPE)
 
   try {
-    let resp = await oauthOpen(authUrl)
+    const resp = await oauthOpen(authUrl)
 
     if (resp.state === STATE) {
       return await _getAccessToken(resp.code)
@@ -47,7 +47,7 @@ async function authorizeUser () {
 
 async function _getAccessToken (code) {
   try {
-    let resp = await axios.post('/api/get-access-token', { code: code })
+    const resp = await axios.post('/api/get-access-token', { code: code })
     return resp.data
   } catch (e) {
     console.error(e)
@@ -63,9 +63,9 @@ async function _getAccessToken (code) {
  */
 async function getAuthenticatedUser (token) {
   try {
-    let resp = await axios.get('https://api.github.com/user', {
+    const resp = await axios.get('https://api.github.com/user', {
       headers: {
-        'Authorization': 'bearer '.concat(token)
+        Authorization: 'bearer '.concat(token)
       }
     })
     return resp.data

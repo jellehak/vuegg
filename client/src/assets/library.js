@@ -1,5 +1,5 @@
 import basicElements from '@/assets/BasicElements'
-import materialComponents from '@/assets/MaterialComponents'
+// import materialComponents from '@/assets/MaterialComponents'
 
 // export default {
 //   elements: basicElements,

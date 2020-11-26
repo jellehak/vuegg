@@ -18,7 +18,7 @@ const projectActions = {
  */
   [types.checkLastSaved]: async function ({ state, dispatch, commit }) {
     const currentProjectB64 = btoa(JSON.stringify(state.project))
-    let lastSavedProjectB64 = await localforage.getItem('gh-last-saved')
+    const lastSavedProjectB64 = await localforage.getItem('gh-last-saved')
 
     if (currentProjectB64 === lastSavedProjectB64) {
       commit(types._toggleHasChanges, false)
@@ -29,7 +29,7 @@ const projectActions = {
     dispatch(types.syncLocal, currentProjectB64)
   },
 
-/**
+  /**
  * Syncronizes the local cache of the project definition
  *
  * @param  {string|null} [projectB64] [description]
@@ -44,7 +44,7 @@ const projectActions = {
     commit(types._toggleIsSyncing, false)
   },
 
-/**
+  /**
  * Uploads the vuegg project definition to github
  * and saves one copy in local storage
  *
@@ -62,7 +62,7 @@ const projectActions = {
     localforage.setItem('gh-last-saved', projectB64)
     localforage.setItem('gh-repo-name', repoName)
 
-    let resp = await api.saveVueggProject(project, owner, repoName, token)
+    const resp = await api.saveVueggProject(project, owner, repoName, token)
 
     if (resp) {
       await dispatch(types.checkLastSaved)
@@ -75,7 +75,7 @@ const projectActions = {
     commit(types._toggleLoadingStatus, false)
   },
 
-/**
+  /**
  * Downloads the current vuegg project definition as a .gg (base64 json) file
  *
  * @return {download} : [project-name].gg file containing the vuegg project definition
@@ -90,7 +90,7 @@ const projectActions = {
     commit(types._toggleLoadingStatus, false)
   },
 
-/**
+  /**
  * Downloads the current vuegg project definition as a .zip file with the vuejs sources
  *
  * @return {download} [project-name].zip file containing the vuejs sources of the vuegg project
@@ -98,14 +98,14 @@ const projectActions = {
   [types.downloadVueSources]: async function ({ state, dispatch, commit }) {
     commit(types._toggleBlockLoadingStatus, true)
 
-    let resp = await api.generateVueSources(state.project)
+    const resp = await api.generateVueSources(state.project)
     const parsedProjectName = state.project.title.replace(/[^a-zA-Z0-9-_]+/g, '-')
     download(resp.data, parsedProjectName + '.zip', resp.data.type)
 
     commit(types._toggleBlockLoadingStatus, false)
   },
 
-/**
+  /**
  * Loads a previously saved vuegg project.
  * If origin is not passed through, the project will load from local by default
  *
@@ -128,7 +128,7 @@ const projectActions = {
         const repo = repoName || state.project.title.replace(/[^a-zA-Z0-9-_]+/g, '-')
 
         // let ghFile = await api.getVueggProject(owner, repo, token)
-        let ghFile = await api.getVueggProject(owner, repo)
+        const ghFile = await api.getVueggProject(owner, repo)
 
         ghFile
           ? project = ghFile.data.data.content
@@ -147,7 +147,7 @@ const projectActions = {
     commit(types._toggleBlockLoadingStatus, false)
   },
 
-/**
+  /**
  * Clears the editing project from vuegg and replaces it with a plain one.
  * (or better to say, resets vuegg to initial state)
  */

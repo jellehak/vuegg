@@ -9,7 +9,7 @@ import App from './App'
 import router from './router/'
 import store from './store/'
 
-import './theme.scss'
+// import './theme.scss'
 import './setups/vuetify'
 
 import 'normalize.css'

@@ -22,38 +22,38 @@ const elementActions = {
  * @see {@link [types.createEgglement]}
  */
   [types.registerElement]: function ({ getters, commit }, payload) {
-    let parent = getters.getPageById(payload.pageId)
+    const parent = getters.getPageById(payload.pageId)
     let el = payload.el
 
     if (el.componegg) {
       if (payload.global) {
         el = componentFactory.compInst(payload.el)
         if (!getters.componentExist(el.name)) {
-          let componentRef = componentFactory.compRef(payload.el)
+          const componentRef = componentFactory.compRef(payload.el)
           commit(types._saveComponentRef, setElId(componentRef))
         } else {
-          let compIndex = getters.getComponentRefIndexByName(el.name)
-          let newCount = getters.getComponentRefByIndex(compIndex).usageCount + 1
-          commit(types._updateComponentRef, {compIndex, newCount})
+          const compIndex = getters.getComponentRefIndexByName(el.name)
+          const newCount = getters.getComponentRefByIndex(compIndex).usageCount + 1
+          commit(types._updateComponentRef, { compIndex, newCount })
         }
       } else if (el.external) {
-          // In case the componegg is from a external library...
+        // In case the componegg is from a external library...
         if (!getters.componentExist(el.name)) {
-          let componentRef = componentFactory.compRef(payload.el)
+          const componentRef = componentFactory.compRef(payload.el)
           commit(types._saveComponentRef, setElId(componentRef))
         } else {
-          let compIndex = getters.getComponentRefIndexByName(el.name)
-          let newCount = getters.getComponentRefByIndex(compIndex).usageCount + 1
-          commit(types._updateComponentRef, {compIndex, newCount})
+          const compIndex = getters.getComponentRefIndexByName(el.name)
+          const newCount = getters.getComponentRefByIndex(compIndex).usageCount + 1
+          commit(types._updateComponentRef, { compIndex, newCount })
         }
       }
     }
 
-    let egglement = setElId(el, payload.pageId)
-    commit(types.createEgglement, {parent, egglement})
+    const egglement = setElId(el, payload.pageId)
+    commit(types.createEgglement, { parent, egglement })
   },
 
-/**
+  /**
  * Removes the egglement identified by payload.elId from the
  * page (payload.pageId). Notice that the element to remove
  * may not necessarily be a direct children of the page, but sub-(n)-children.
@@ -65,25 +65,25 @@ const elementActions = {
   [types.removeElement]: function ({ getters, commit }, payload) {
     commit(types._clearSelectedElements)
 
-    let parentId = payload.elId.substring(0, payload.elId.lastIndexOf('.'))
-    let parent = getChildNode(payload.page, parentId)
-    let eggIndex = parent.children.findIndex(egg => egg.id === payload.elId)
+    const parentId = payload.elId.substring(0, payload.elId.lastIndexOf('.'))
+    const parent = getChildNode(payload.page, parentId)
+    const eggIndex = parent.children.findIndex(egg => egg.id === payload.elId)
 
-    let element = parent.children[eggIndex]
+    const element = parent.children[eggIndex]
     if (element.componegg) {
       if (element.global || element.external) {
-        let compIndex = getters.getComponentRefIndexByName(element.name)
-        let count = getters.getComponentRefByIndex(compIndex).usageCount
+        const compIndex = getters.getComponentRefIndexByName(element.name)
+        const count = getters.getComponentRefByIndex(compIndex).usageCount
 
         count > 1
-          ? commit(types._updateComponentRef, {compIndex, newCount: count - 1})
+          ? commit(types._updateComponentRef, { compIndex, newCount: count - 1 })
           : commit(types._removeComponentRef, compIndex)
       }
     }
-    commit(types.deleteEgglement, {parent, eggIndex})
+    commit(types.deleteEgglement, { parent, eggIndex })
   },
 
-/**
+  /**
  * Updates the element identified by payload.elId with the payload values
  *
  * @param {string} payload.pageId : Id of the page where the element reside
@@ -96,14 +96,14 @@ const elementActions = {
  * @see {@link [types.updateEgglement]}
  */
   [types.resizeElement]: function ({ getters, commit }, payload) {
-    let page = getters.getPageById(payload.pageId)
-    let egglement = getChildNode(page, payload.elId)
+    const page = getters.getPageById(payload.pageId)
+    const egglement = getChildNode(page, payload.elId)
 
     if (
-        payload.left !== egglement.left || payload.top !== egglement.top ||
+      payload.left !== egglement.left || payload.top !== egglement.top ||
         payload.right !== egglement.right || payload.bottom !== egglement.bottom ||
         payload.height !== egglement.height || payload.width !== egglement.width
-      ) {
+    ) {
       commit(types.updateEgglement, {
         egglement,
         left: (egglement.left !== 'auto') ? payload.left : null,
@@ -116,7 +116,7 @@ const elementActions = {
     }
   },
 
-/**
+  /**
  * If payload.parentId != null, meaning that the moved element
  * has been dropped in a new container, the element will change its family.
  *
@@ -135,11 +135,11 @@ const elementActions = {
  * @see {@link [types.updateEgglement]}
  */
   [types.moveElement]: function ({ getters, dispatch, commit }, payload) {
-    let page = getters.getPageById(payload.pageId)
-    let egglement = getChildNode(page, payload.elId)
+    const page = getters.getPageById(payload.pageId)
+    const egglement = getChildNode(page, payload.elId)
 
     if (payload.parentId) {
-      dispatch(types.changeElementParent, {...payload, page, egglement})
+      dispatch(types.changeElementParent, { ...payload, page, egglement })
     } else if (payload.left !== egglement.left || payload.top !== egglement.top) {
       commit(types.updateEgglement, {
         egglement,
@@ -151,7 +151,7 @@ const elementActions = {
     }
   },
 
-/**
+  /**
  * Changes the payload.egglement to another family:
  * First removes the egglement from the children array of it's current (old) parent.
  * Registers the egglement with the ids of its new family and created as new child
@@ -170,33 +170,33 @@ const elementActions = {
  * @see {@link [types.updateEgglement]}
  */
   [types.changeElementParent]: function ({ getters, commit }, payload) {
-      // To avoid reference problems (the oldSelected element will be different)
+    // To avoid reference problems (the oldSelected element will be different)
     commit(types._clearSelectedElements)
 
     // Gets the computed dimensions before being take off the stage
-    let height = getComputedProp('height', payload.egglement)
-    let width = getComputedProp('width', payload.egglement)
+    const height = getComputedProp('height', payload.egglement)
+    const width = getComputedProp('width', payload.egglement)
 
-      // OLD FAMILY business
-    let oldParentId = payload.elId.substring(0, payload.elId.lastIndexOf('.'))
-    let oldParent = getChildNode(payload.page, oldParentId)
-    let childEggIndex = oldParent.children.findIndex(egg => egg.id === payload.egglement.id)
+    // OLD FAMILY business
+    const oldParentId = payload.elId.substring(0, payload.elId.lastIndexOf('.'))
+    const oldParent = getChildNode(payload.page, oldParentId)
+    const childEggIndex = oldParent.children.findIndex(egg => egg.id === payload.egglement.id)
 
-    commit(types.deleteEgglement, {parent: oldParent, eggIndex: childEggIndex})
+    commit(types.deleteEgglement, { parent: oldParent, eggIndex: childEggIndex })
 
-      // NEW FAMILY business
-    let newParent = getChildNode(payload.page, payload.parentId)
+    // NEW FAMILY business
+    const newParent = getChildNode(payload.page, payload.parentId)
     payload.egglement = setElId(payload.egglement, payload.parentId)
 
-    commit(types.createEgglement, {parent: newParent, egglement: payload.egglement})
+    commit(types.createEgglement, { parent: newParent, egglement: payload.egglement })
 
-      // Update relative position and dimensions of the element
+    // Update relative position and dimensions of the element
     const relPoint = calcRelativePoint(payload.page, payload.egglement.id, payload.mouseX, payload.mouseY)
 
-    let left = relPoint.left - (width / 2)
-    let top = relPoint.top - (height / 2)
+    const left = relPoint.left - (width / 2)
+    const top = relPoint.top - (height / 2)
 
-    const fixedProps = fixElementToParentBounds({top, left, height, width}, newParent)
+    const fixedProps = fixElementToParentBounds({ top, left, height, width }, newParent)
     commit(types.updateEgglement, {
       ...fixedProps,
       egglement: payload.egglement,
@@ -205,14 +205,14 @@ const elementActions = {
     })
   },
 
-/**
+  /**
  * Refetches the elements on the page by the id's of the selectedElements,
  * cleans the selectedElements array and repopulates it with the fresh refetched elements.
  *
  * This is necessary for a correct data binding after redo/undo actions.
  */
   [types.rebaseSelectedElements]: function ({ getters, commit, state }) {
-    let freshElements = state.app.selectedElements.map(el => getChildNode(state.app.selectedPage, el.id))
+    const freshElements = state.app.selectedElements.map(el => getChildNode(state.app.selectedPage, el.id))
     commit(types._clearSelectedElements)
     freshElements.map(el => commit(types._addSelectedElement, el))
   }
